@@ -3,7 +3,7 @@
 FROM tomcat:9
 
 # Set the working directory (optional, but good practice)
-WORKDIR /usr/local/tomcat
+WORKDIR C:\java resource\web server\apache-tomcat-9.0.84
 
 # Copy the WAR file to the Tomcat webapps directory
 COPY target/ORS_Project4.war /usr/local/tomcat/webapps/ORS_Project4.war
