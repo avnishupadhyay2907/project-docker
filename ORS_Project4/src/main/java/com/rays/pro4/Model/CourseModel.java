@@ -31,7 +31,7 @@ public class CourseModel {
 		try {
 
 			conn = JDBCDataSource.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(ID) FROM st_course");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(ID) FROM ST_COURSE");
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				pk = rs.getInt(1);
@@ -63,7 +63,7 @@ public class CourseModel {
 			conn = JDBCDataSource.getConnection();
 			pk = nextPK();
 			conn.setAutoCommit(false);
-			PreparedStatement pstmt = conn.prepareStatement("INSERT  st_course VALUE(?,?,?,?,?,?,?,?)");
+			PreparedStatement pstmt = conn.prepareStatement("INSERT  ST_COURSE VALUE(?,?,?,?,?,?,?,?)");
 			pstmt.setInt(1, pk);
 			pstmt.setString(2, bean.getName());
 			pstmt.setString(3, bean.getDescription());
@@ -99,7 +99,7 @@ public class CourseModel {
 		try {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
-			PreparedStatement pstmt = conn.prepareStatement("DELETE  FROM st_course WHERE ID=?");
+			PreparedStatement pstmt = conn.prepareStatement("DELETE  FROM ST_COURSE WHERE ID=?");
 			pstmt.setLong(1, bean.getId());
 			pstmt.executeUpdate();
 			conn.commit();
@@ -122,7 +122,7 @@ public class CourseModel {
 
 	public CourseBean findByName(String name) throws ApplicationException {
 		log.debug("Model findByName Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM st_course WHERE NAME=?");
+		StringBuffer sql = new StringBuffer("SELECT * FROM ST_COURSE WHERE NAME=?");
 		CourseBean bean = null;
 		Connection conn = null;
 
@@ -158,7 +158,7 @@ public class CourseModel {
 
 	public CourseBean FindByPK(long pk) throws ApplicationException {
 		log.debug("Model FindByPK Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM st_course WHERE ID=?");
+		StringBuffer sql = new StringBuffer("SELECT * FROM ST_COURSE WHERE ID=?");
 		Connection conn = null;
 		CourseBean bean = null;
 		try {
@@ -202,7 +202,7 @@ public class CourseModel {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement(
-					"UPDATE st_course SET NAME=?,DESCRIPTION=?,DURATION=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
+					"UPDATE ST_COURSE SET NAME=?,DESCRIPTION=?,DURATION=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
 
 			pstmt.setString(1, bean.getName());
 			pstmt.setString(2, bean.getDescription());
@@ -237,7 +237,7 @@ public class CourseModel {
 
 	public List search(CourseBean bean, int pageNo, int pageSize) throws DatabaseException, ApplicationException {
 		log.debug("Model search Started");
-		StringBuffer sql = new StringBuffer("Select * from st_course where 1=1");
+		StringBuffer sql = new StringBuffer("Select * from ST_COURSE where 1=1");
 		if (bean != null) {
 			if (bean.getId() > 0) {
 				sql.append(" AND id = " + bean.getId());

@@ -10,6 +10,7 @@ com\rays\pro4\Util\DataValidator.class
 com\rays\pro4\Util\EmailUtility$1.class
 com\rays\pro4\Bean\FacultyBean.class
 com\rays\pro4\Bean\EmployeeBean.class
+com\rays\pro4\Model\InventoryModel.class
 com\rays\proj4\Test\SubjectTest.class
 com\rays\proj4\Test\TimeTableTest.class
 com\rays\pro4\controller\TimetableListCtl.class

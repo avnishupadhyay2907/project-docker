@@ -29,7 +29,7 @@ public class EmployeeModel {
 
 		try {
 			conn = JDBCDataSource.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("select max(ID) FROM st_employee");
+			PreparedStatement pstmt = conn.prepareStatement("select max(ID) FROM ST_EMPLOYEE");
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				pk = rs.getInt(1);
@@ -66,7 +66,7 @@ public class EmployeeModel {
 
 			System.out.println(pk + " in ModelJDBC");
 			conn.setAutoCommit(false); // Begin transaction
-			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO st_employee VALUES(?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO ST_EMPLOYEE VALUES(?,?,?,?,?,?,?,?,?,?)");
 			pstmt.setInt(1, pk);
 			pstmt.setString(2, bean.getFullName());
 			pstmt.setString(3, bean.getUserName());
@@ -106,7 +106,7 @@ public class EmployeeModel {
 		try {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
-			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_employee WHERE ID=?");
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM ST_EMPLOYEE WHERE ID=?");
 			pstmt.setLong(1, bean.getId());
 			pstmt.executeUpdate();
 			conn.commit();
@@ -127,7 +127,7 @@ public class EmployeeModel {
 
 	public EmployeeBean findByUserName(String userName) throws ApplicationException {
 		log.debug("Model findBy Email Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM st_employee WHERE user_name=?");
+		StringBuffer sql = new StringBuffer("SELECT * FROM ST_EMPLOYEE WHERE user_name=?");
 		EmployeeBean bean = null;
 		Connection conn = null;
 		try {
@@ -163,7 +163,7 @@ public class EmployeeModel {
 
 	public EmployeeBean findByPK(long pk) throws ApplicationException {
 		log.debug("Model findByPK Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM st_employee WHERE ID=?");
+		StringBuffer sql = new StringBuffer("SELECT * FROM ST_EMPLOYEE WHERE ID=?");
 		EmployeeBean bean = null;
 		Connection conn = null;
 		try {
@@ -209,7 +209,7 @@ public class EmployeeModel {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement(
-					"UPDATE st_employee SET FULL_NAME=?,USER_NAME=?,PASSWORD=?,BIRTH_DATE=?,CONTACT_NUMBER=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
+					"UPDATE ST_EMPLOYEE SET FULL_NAME=?,USER_NAME=?,PASSWORD=?,BIRTH_DATE=?,CONTACT_NUMBER=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
 
 			pstmt.setString(1, bean.getFullName());
 			pstmt.setString(2, bean.getUserName());
@@ -246,7 +246,7 @@ public class EmployeeModel {
 
 	public List search(EmployeeBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model search Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM st_employee WHERE 1=1");
+		StringBuffer sql = new StringBuffer("SELECT * FROM ST_EMPLOYEE WHERE 1=1");
 
 		if (bean != null) {
 			if (bean.getId() > 0) {
@@ -318,7 +318,7 @@ public class EmployeeModel {
 	public List list(int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model list Started");
 		ArrayList list = new ArrayList();
-		StringBuffer sql = new StringBuffer("select * from st_employee");
+		StringBuffer sql = new StringBuffer("select * from ST_EMPLOYEE");
 
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;
