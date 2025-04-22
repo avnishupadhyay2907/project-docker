@@ -153,7 +153,7 @@ public class UserModel {
 
 	public UserBean findByLogin(String login) throws ApplicationException {
 		log.debug("Model findByLohin Started");
-		String sql = "SELECT * FROM st_user WHERE LOGIN	=?";
+		String sql = "SELECT * FROM st_user WHERE LOGIN = ?";
 		UserBean bean = null;
 		Connection conn = null;
 		try {
